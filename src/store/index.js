@@ -1,54 +1,53 @@
-import { createStore } from "vuex";
+import { defineStore } from 'pinia'
 
-export default createStore({
-  state: {
-    hideConfigButton: false,
-    isPinned: false,
-    showConfig: false,
-    sidebarType: "bg-white",
-    isRTL: false,
-    mcolor: "",
-    darkMode: false,
-    isNavFixed: false,
-    isAbsolute: false,
-    showNavs: true,
-    showSidenav: true,
-    showNavbar: true,
-    showFooter: true,
-    showMain: true,
-    layout: "default",
-  },
-  mutations: {
-    toggleConfigurator(state) {
-      state.showConfig = !state.showConfig;
+export const useAppStore = defineStore('app', {
+  state: () => ({
+    state: {
+      hideConfigButton: false,
+      isPinned: false,
+      showConfig: false,
+      sidebarType: 'bg-white',
+      isRTL: false,
+      mcolor: '',
+      darkMode: false,
+      isNavFixed: false,
+      isAbsolute: false,
+      showNavs: true,
+      showSidenav: true,
+      showNavbar: true,
+      showFooter: true,
+      showMain: true,
+      layout: 'default',
     },
-    sidebarMinimize(state) {
-      let sidenav_show = document.querySelector("#app");
-      if (state.isPinned) {
-        sidenav_show.classList.add("g-sidenav-hidden");
-        sidenav_show.classList.remove("g-sidenav-pinned");
-        state.isPinned = false;
-      } else {
-        sidenav_show.classList.add("g-sidenav-pinned");
-        sidenav_show.classList.remove("g-sidenav-hidden");
-        state.isPinned = true;
-      }
-    },
-    sidebarType(state, payload) {
-      state.sidebarType = payload;
-    },
-    navbarFixed(state) {
-      if (state.isNavFixed === false) {
-        state.isNavFixed = true;
-      } else {
-        state.isNavFixed = false;
-      }
-    },
-  },
+  }),
   actions: {
-    toggleSidebarColor({ commit }, payload) {
-      commit("sidebarType", payload);
+    toggleConfigurator() {
+      this.state.showConfig = !this.state.showConfig
+    },
+    closeConfigurator() {
+      this.state.showConfig = false;
+    },
+    sidebarMinimize() {
+      const sidenavShow = document.querySelector('#app')
+      if (this.state.isPinned) {
+        sidenavShow.classList.add('g-sidenav-hidden')
+        sidenavShow.classList.remove('g-sidenav-pinned')
+        this.state.isPinned = false
+      } else {
+        sidenavShow.classList.add('g-sidenav-pinned')
+        sidenavShow.classList.remove('g-sidenav-hidden')
+        this.state.isPinned = true
+      }
+    },
+    setSidebarType(payload) {
+      this.state.sidebarType = payload
+    },
+    navbarFixed() {
+      this.state.isNavFixed = !this.state.isNavFixed
+    },
+    toggleSidebarColor(payload) {
+      this.setSidebarType(payload) // Directly call another action if needed
     },
   },
-  getters: {},
-});
+  getters: {}, // Getters remain similar, but are accessed differently in components
+})

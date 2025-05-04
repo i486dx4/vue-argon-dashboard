@@ -1,8 +1,9 @@
 <script setup>
 import { computed } from "vue";
-import { useStore } from "vuex";
+// import { defineStore } from "pinia";
+import { useAppStore } from "@/store/index.js";
 
-const store = useStore();
+const store = useAppStore();
 const isRTL = computed(() => store.state.isRTL);
 const sidebarMinimize = () => store.commit("sidebarMinimize");
 
@@ -25,13 +26,11 @@ defineProps({
 </script>
 <template>
   <router-link :to="to" class="nav-link" @click="minimizeSidebar">
-    <div
-      class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center"
-    >
+    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
       <slot name="icon"></slot>
     </div>
     <span class="nav-link-text" :class="isRTL ? ' me-1' : 'ms-1'">{{
       navText
-    }}</span>
+      }}</span>
   </router-link>
 </template>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ArgonButton from "@/components/ArgonButton.vue";
 </script>
 <template>

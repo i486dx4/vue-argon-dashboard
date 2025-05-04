@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted } from "vue";
 import setNavPills from "@/assets/js/nav-pills.js";
 

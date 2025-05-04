@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted } from "vue";
 import Chart from "chart.js/auto";
 
@@ -32,21 +32,27 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  var gradientLineChart = document.getElementById(props.id).getContext("2d");
+  const gradientLineChartEl = document.getElementById(props.id); // .getContext("2d");
 
-  var gradientStroke1 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
+  if (gradientLineChartEl == null) {
+    return;
+  }
+
+  const gradientLineChart = gradientLineChartEl.getContext("2d");
+
+  const gradientStroke1 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
 
   gradientStroke1.addColorStop(1, "rgba(203,12,159,0.2)");
   gradientStroke1.addColorStop(0.2, "rgba(72,72,176,0.0)");
   gradientStroke1.addColorStop(0, "rgba(203,12,159,0)"); //purple colors
 
-  var gradientStroke2 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
+  const gradientStroke2 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
 
   gradientStroke2.addColorStop(1, "rgba(20,23,39,0.2)");
   gradientStroke2.addColorStop(0.2, "rgba(72,72,176,0.0)");
   gradientStroke2.addColorStop(0, "rgba(20,23,39,0)"); //purple colors
 
-  let chartStatus = Chart.getChart(props.id);
+  const chartStatus = Chart.getChart(props.id);
   if (chartStatus != undefined) {
     chartStatus.destroy();
   }
@@ -63,7 +69,7 @@ onMounted(() => {
             pointRadius: 0,
             borderColor: "#4BB543 ",
             backgroundColor: gradientStroke1,
-            // eslint-disable-next-line no-dupe-keys
+
             borderWidth: 3,
             fill: true,
             data: props.chart.datasets[0].data,
@@ -75,7 +81,7 @@ onMounted(() => {
             borderWidth: 0,
             pointRadius: 0,
             borderColor: "#3A416F",
-            // eslint-disable-next-line no-dupe-keys
+
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             fill: true,
@@ -153,7 +159,7 @@ onMounted(() => {
             pointRadius: 0,
             borderColor: "#4BB543 ",
             backgroundColor: gradientStroke1,
-            // eslint-disable-next-line no-dupe-keys
+
             borderWidth: 3,
             fill: true,
             data: props.chart.datasets[0].data,
@@ -229,11 +235,7 @@ onMounted(() => {
     </div>
     <div class="p-3 card-body">
       <div class="chart">
-        <canvas
-          :id="props.id"
-          class="chart-canvas"
-          :height="props.height"
-        ></canvas>
+        <canvas :id="props.id" class="chart-canvas" :height="props.height"></canvas>
       </div>
     </div>
   </div>

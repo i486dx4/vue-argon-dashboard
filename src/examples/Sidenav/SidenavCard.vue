@@ -1,8 +1,9 @@
 <script setup>
 import { computed } from "vue";
-import { useStore } from "vuex";
-const store = useStore();
+// import { defineStore } from "pinia";
+import { useAppStore } from "@/store/index.js";
 
+const store = useAppStore();
 const isRTL = computed(() => store.state.isRTL);
 const layout = computed(() => store.state.layout);
 defineProps({
@@ -21,17 +22,9 @@ defineProps({
 });
 </script>
 <template>
-  <div
-    v-show="layout !== 'landing'"
-    class="card card-plain shadow-none"
-    id="sidenavCard"
-  >
+  <div v-show="layout !== 'landing'" class="card card-plain shadow-none" id="sidenavCard">
     <div class="p-3 card-body text-center w-100 pt-0">
-      <img
-        class="w-50 mx-auto"
-        src="@/assets/img/illustrations/icon-documentation.svg"
-        alt="sidebar_illustration"
-      />
+      <img class="w-50 mx-auto" src="@/assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration" />
 
       <h6 v-if="isRTL" class="mb-0 text-dark up">تحتاج مساعدة ؟</h6>
 
@@ -44,39 +37,23 @@ defineProps({
       <p v-else class="text-xs font-weight-bold">Please check our docs</p>
     </div>
 
-    <a
-      v-if="isRTL"
-      href="https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/"
-      target="_blank"
-      class="mb-3 btn btn-dark btn-sm w-100"
-    >
+    <a v-if="isRTL" href="https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/" target="_blank"
+      class="mb-3 btn btn-dark btn-sm w-100">
       توثيق
     </a>
 
-    <a
-      v-else
-      href="https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/"
-      target="_blank"
-      class="mb-3 btn btn-dark btn-sm w-100"
-    >
+    <a v-else href="https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/" target="_blank"
+      class="mb-3 btn btn-dark btn-sm w-100">
       Documentation
     </a>
 
-    <a
-      v-if="isRTL"
-      href="https://www.creative-tim.com/product/vue-argon-dashboard-pro"
-      target="_blank"
-      class="mb-3 btn btn-success btn-sm w-100"
-    >
+    <a v-if="isRTL" href="https://www.creative-tim.com/product/vue-argon-dashboard-pro" target="_blank"
+      class="mb-3 btn btn-success btn-sm w-100">
       التطور للاحترافية
     </a>
 
-    <a
-      v-else
-      href="https://www.creative-tim.com/product/vue-argon-dashboard-pro"
-      target="_blank"
-      class="mb-3 btn btn-success btn-sm w-100"
-    >
+    <a v-else href="https://www.creative-tim.com/product/vue-argon-dashboard-pro" target="_blank"
+      class="mb-3 btn btn-success btn-sm w-100">
       Upgrade to pro
     </a>
   </div>
