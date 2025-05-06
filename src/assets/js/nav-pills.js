@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 export default function setNavPills() {
-  var total = document.querySelectorAll(".nav-pills");
+  let total = document.querySelectorAll(".nav-pills");
 
   function initNavs() {
     total.forEach(function (item, i) {

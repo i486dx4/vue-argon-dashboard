@@ -1,5 +1,5 @@
-<script setup>
-import ArgonButton from "@/components/ArgonButton.vue";
+<script setup lang="ts">
+import ArgonButton from '@/components/ArgonButton.vue';
 </script>
 <template>
   <div class="card h-100 mb-4">
@@ -15,9 +15,7 @@ import ArgonButton from "@/components/ArgonButton.vue";
       </div>
     </div>
     <div class="card-body pt-4 p-3">
-      <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">
-        Newest
-      </h6>
+      <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
       <ul class="list-group">
         <li
           class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
@@ -36,9 +34,7 @@ import ArgonButton from "@/components/ArgonButton.vue";
               <span class="text-xs">27 March 2020, at 12:30 PM</span>
             </div>
           </div>
-          <div
-            class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold"
-          >
+          <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
             - $ 2,500
           </div>
         </li>
@@ -66,9 +62,7 @@ import ArgonButton from "@/components/ArgonButton.vue";
           </div>
         </li>
       </ul>
-      <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">
-        Yesterday
-      </h6>
+      <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
       <ul class="list-group">
         <li
           class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
@@ -156,11 +150,7 @@ import ArgonButton from "@/components/ArgonButton.vue";
               <span class="text-xs">26 March 2020, at 05:00 AM</span>
             </div>
           </div>
-          <div
-            class="d-flex align-items-center text-dark text-sm font-weight-bold"
-          >
-            Pending
-          </div>
+          <div class="d-flex align-items-center text-dark text-sm font-weight-bold">Pending</div>
         </li>
       </ul>
     </div>

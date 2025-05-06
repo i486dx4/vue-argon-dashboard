@@ -1,32 +1,79 @@
-<script setup>
+<!--<script setup lang="ts">-->
+<!--defineProps({-->
+<!--  title: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  description: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  headings: {-->
+<!--    type: Array,-->
+<!--    default: () => [],-->
+<!--  },-->
+<!--  rows: {-->
+<!--    type: Array,-->
+<!--    logo: String,-->
+<!--    tool: String,-->
+<!--    teamMembers: Array,-->
+<!--    price: String,-->
+<!--    progress: Number,-->
+<!--    default: () => [],-->
+<!--  },-->
+<!--  action: {-->
+<!--    type: Array,-->
+<!--    route: String,-->
+<!--    label: String,-->
+<!--  },-->
+<!--});-->
+<!--</script>-->
+<script setup lang="ts">
+// import { type PropType } from 'vue'
+
+interface TableRow {
+  logo?: string
+  tool?: string
+  teamMembers?: string[]
+  price?: string
+  progress?: number
+
+  [key: string]: any // Allow other properties in rows
+}
+
+interface ActionItem {
+  route?: string
+  label?: string
+
+  [key: string]: any // Allow other properties in action
+}
+
 defineProps({
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   description: {
     type: String,
-    default: "",
+    default: '',
   },
   headings: {
-    type: Array,
+    // type: Array as () => PropType<string[]>,
+    type: Array as () => string[],
     default: () => [],
   },
   rows: {
-    type: Array,
-    logo: String,
-    tool: String,
-    teamMembers: Array,
-    price: String,
-    progress: Number,
+    // type: Array as () => PropType<TableRow[]>,
+    type: Array as () => TableRow[],
     default: () => [],
+    // Removed individual type definitions here, as they belong in the TableRow interface
   },
   action: {
-    type: Array,
-    route: String,
-    label: String,
+    // type: Array as () => PropType<ActionItem[]>,
+    type: Array as () => ActionItem[],
+    // Removed individual type definitions here, as they belong in the ActionItem interface
   },
-});
+})
 </script>
 <template>
   <div class="card">
@@ -38,23 +85,15 @@ defineProps({
         </div>
         <div class="col-lg-6 col-5 my-auto text-end" v-if="action">
           <div class="dropdown float-lg-start pe-4">
-            <a
-              class="cursor-pointer"
-              :id="title"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="cursor-pointer" :id="title" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i>
             </a>
             <ul
               class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5 text-end"
               :aria-labelledby="title"
-              style
             >
               <li v-for="{ route, label } in action" :key="label">
-                <a class="dropdown-item border-radius-md" :href="route">{{
-                  label
-                }}</a>
+                <a class="dropdown-item border-radius-md" :href="route">{{ label }}</a>
               </li>
             </ul>
           </div>
@@ -76,10 +115,7 @@ defineProps({
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="{ logo, tool, teamMembers, price, progress } in rows"
-              :key="tool"
-            >
+            <tr v-for="{ logo, tool, teamMembers, price, progress } in rows" :key="tool">
               <td>
                 <div class="d-flex py-1">
                   <div>
@@ -99,7 +135,6 @@ defineProps({
                     class="avatar avatar-xs rounded-circle"
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
-                    title
                     data-bs-original-title="Ryan Tompson"
                   >
                     <img :src="image" alt="team1" />
@@ -113,9 +148,7 @@ defineProps({
                 <div class="progress-wrapper w-75 mx-auto">
                   <div class="progress-info">
                     <div class="progress-percentage">
-                      <span class="text-xs font-weight-bold"
-                        >{{ progress }}%</span
-                      >
+                      <span class="text-xs font-weight-bold">{{ progress }}%</span>
                     </div>
                   </div>
                   <div class="progress">

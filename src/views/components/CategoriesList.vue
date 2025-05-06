@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
+import type { PropType } from 'vue';
 
 const store = useAppStore();
-const isRTL = computed(() => store.state.isRTL);
+const isRTL = computed(() => store.isRTL);
+
+interface Category {
+  icon: {
+    component: string;
+    background: string;
+  };
+  label: string;
+  description: string;
+}
 
 defineProps({
   title: {
@@ -12,14 +22,15 @@ defineProps({
     default: "Categories",
   },
   categories: {
-    type: Array,
+    type: Array as PropType<Category[]>,
     required: true,
-    icon: {
-      component: String,
-      background: String,
-    },
-    label: String,
-    description: String,
+    //   icon: {
+    //     component: String,
+    //     background: String,
+    //   },
+    //   label: String,
+    //   description: String,
+    // },
   },
 });
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted, onBeforeUnmount } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
@@ -14,23 +14,23 @@ const body = document.getElementsByTagName("body")[0];
 const store = useAppStore();
 
 onMounted(() => {
-  store.state.isAbsolute = true;
+  store.isAbsolute = true;
   setNavPills();
   setTooltip();
 });
 onBeforeMount(() => {
-  store.state.imageLayout = "profile-overview";
-  store.state.showNavbar = false;
-  store.state.showFooter = true;
-  store.state.hideConfigButton = true;
+  store.imageLayout = "profile-overview";
+  store.showNavbar = false;
+  store.showFooter = true;
+  store.hideConfigButton = true;
   body.classList.add("profile-overview");
 });
 onBeforeUnmount(() => {
-  store.state.isAbsolute = false;
-  store.state.imageLayout = "default";
-  store.state.showNavbar = true;
-  store.state.showFooter = true;
-  store.state.hideConfigButton = false;
+  store.isAbsolute = false;
+  store.imageLayout = "default";
+  store.showNavbar = true;
+  store.showFooter = true;
+  store.hideConfigButton = false;
   body.classList.remove("profile-overview");
 });
 </script>

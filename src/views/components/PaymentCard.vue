@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ArgonButton from "@/components/ArgonButton.vue";
 </script>
 <template>
@@ -34,7 +34,6 @@ import ArgonButton from "@/components/ArgonButton.vue";
               class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
               data-bs-toggle="tooltip"
               data-bs-placement="top"
-              title
               aria-hidden="true"
               data-bs-original-title="Edit Card"
               aria-label="Edit Card"
@@ -58,7 +57,6 @@ import ArgonButton from "@/components/ArgonButton.vue";
               class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
               data-bs-toggle="tooltip"
               data-bs-placement="top"
-              title
               aria-hidden="true"
               data-bs-original-title="Edit Card"
               aria-label="Edit Card"

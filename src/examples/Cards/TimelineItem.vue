@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
   color: {
     type: String,
-    default: "",
+    default: '',
   },
   icon: {
     type: Object,
@@ -16,31 +16,25 @@ defineProps({
   },
   dateTime: {
     type: String,
-    default: "",
+    default: '',
   },
   description: {
     type: String,
-    default: "",
+    default: '',
   },
   badges: {
     type: Array,
     default: () => [],
   },
-});
+})
 </script>
 <template>
   <div class="mb-3 timeline-block">
-    <span
-      class="timeline-step p-3"
-      :class="`${$parent.dark ? 'bg-dark' : 'bg-'}${color}`"
-    >
+    <span class="timeline-step p-3" :class="`${$parent?.dark ? 'bg-dark' : 'bg-'}${color}`">
       <i :class="`text-${icon.color} text-gradient ${icon.component}`"></i>
     </span>
     <div class="timeline-content">
-      <h6
-        class="mb-0 text-sm font-weight-bold"
-        :class="$parent.dark ? 'text-white' : 'text-dark'"
-      >
+      <h6 class="mb-0 text-sm font-weight-bold" :class="$parent?.dark ? 'text-white' : 'text-dark'">
         {{ title }}
       </h6>
       <p class="mt-1 mb-0 text-xs text-secondary font-weight-normal">
@@ -49,7 +43,7 @@ defineProps({
       <p
         v-if="description"
         class="mt-3 mb-2 text-sm"
-        :class="$parent.dark ? 'text-white' : 'text-dark'"
+        :class="$parent?.dark ? 'text-white' : 'text-dark'"
       >
         {{ description }}
       </p>

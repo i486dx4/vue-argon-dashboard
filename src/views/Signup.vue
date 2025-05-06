@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { onBeforeUnmount, onBeforeMount } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
@@ -12,17 +12,17 @@ const body = document.getElementsByTagName("body")[0];
 
 const store = useAppStore();
 onBeforeMount(() => {
-  store.state.hideConfigButton = true;
-  store.state.showNavbar = false;
-  store.state.showSidenav = false;
-  store.state.showFooter = false;
+  store.hideConfigButton = true;
+  store.showNavbar = false;
+  store.showSidenav = false;
+  store.showFooter = false;
   body.classList.remove("bg-gray-100");
 });
 onBeforeUnmount(() => {
-  store.state.hideConfigButton = false;
-  store.state.showNavbar = true;
-  store.state.showSidenav = true;
-  store.state.showFooter = true;
+  store.hideConfigButton = false;
+  store.showNavbar = true;
+  store.showSidenav = true;
+  store.showFooter = true;
   body.classList.add("bg-gray-100");
 });
 </script>

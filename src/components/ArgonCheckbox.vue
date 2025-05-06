@@ -1,4 +1,30 @@
-<script setup>
+<!--<script setup lang="ts">-->
+<!--import { defineProps } from 'vue';-->
+
+<!--interface Props {-->
+<!--  name?: string;-->
+<!--  id?: string;-->
+<!--  checked?: boolean;-->
+<!--}-->
+
+<!--const props = defineProps({-->
+<!--  name: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  id: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  checked: {-->
+<!--    type: Boolean,-->
+<!--    default: false,-->
+<!--  },-->
+<!--});-->
+<!--</script>-->
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
 defineProps({
   name: {
     type: String,
@@ -28,3 +54,20 @@ defineProps({
     </label>
   </div>
 </template>
+
+<!--<script setup lang="ts">-->
+<!--defineProps({-->
+<!--  name: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  id: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  checked: {-->
+<!--    type: Boolean,-->
+<!--    default: false,-->
+<!--  },-->
+<!--});-->
+<!--</script>-->

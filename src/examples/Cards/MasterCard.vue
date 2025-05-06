@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 import ArgonAvatar from "@/components/ArgonAvatar.vue";
 import img1 from "../../assets/img/logos/mastercard.png";
 
 const store = useAppStore();
-const isRTL = computed(() => store.state.isRTL);
+const isRTL = computed(() => store.isRTL);
 defineProps({
   card: {
     type: Object,

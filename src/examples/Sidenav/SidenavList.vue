@@ -1,14 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 import SidenavItem from "./SidenavItem.vue";
 import SidenavCard from "./SidenavCard.vue";
 
 const store = useAppStore();
-const isRTL = computed(() => store.state.isRTL);
+const isRTL = computed(() => store.isRTL);
 
 const getRoute = () => {
   const route = useRoute();

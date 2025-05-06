@@ -1,11 +1,11 @@
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, defineProps } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 const store = useAppStore();
-const isRTL = computed(() => store.state.isRTL);
-const isNavFixed = computed(() => store.state.isNavFixed);
+const isRTL = computed(() => store.isRTL);
+const isNavFixed = computed(() => store.isNavFixed);
 
 defineProps({
   currentPage: {

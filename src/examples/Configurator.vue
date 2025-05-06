@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore, type SidebarBackgroundColor } from "@/store/index.ts";
 import { activateDarkMode, deactivateDarkMode } from "@/assets/js/dark-mode";
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const store = useAppStore();
 // state
-const isRTL = computed(() => store.state.isRTL);
-const isNavFixed = computed(() => store.state.isNavFixed);
-const sidebarType = computed(() => store.state.sidebarType);
+const isRTL = computed(() => store.isRTL);
+const isNavFixed = computed(() => store.isNavFixed);
+const sidebarType = computed(() => store.sidebarType);
 // const toggleConfigurator = () => store.commit("toggleConfigurator");
 
 const toggleConfigurator = () => {
@@ -20,23 +20,22 @@ const navbarFixed = () => {
   store.navbarFixed();
   // store.commit("navbarFixed");
 }
-const setSidebarType = (theType) => {
-  // store.commit("sidebarType", theType);
-  store.setSidebarType(theType);
+const setSidebarType = (sidebarType: SidebarBackgroundColor) => {
+  store.setSidebarType(sidebarType);
 }
 
 const sidebarColor = (color = "success") => {
-  document.querySelector("#sidenav-main").setAttribute("data-color", color);
+  document.querySelector("#sidenav-main")?.setAttribute("data-color", color);
 };
 
 const darkMode = () => {
-  if (store.state.darkMode) {
-    store.state.darkMode = false;
+  if (store.darkMode) {
+    store.darkMode = false;
     setSidebarType("bg-white");
     deactivateDarkMode();
     return;
   } else {
-    store.state.darkMode = true;
+    store.darkMode = true;
     setSidebarType("bg-default");
     activateDarkMode();
   }
@@ -117,7 +116,7 @@ const closeConfigurator = () => {
         <div class="mt-2 mb-5 d-flex">
           <h6 class="mb-0" :class="isRTL ? 'ms-2' : ''">Light / Dark</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" :checked="store.state.darkMode"
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" :checked="store.darkMode"
               @click="darkMode" />
           </div>
         </div>

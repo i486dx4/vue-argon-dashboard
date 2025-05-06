@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { onBeforeMount, onBeforeUnmount } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 import MiniStatisticsCard from "@/examples/Cards/MiniStatisticsCard.vue";
 import DeveloperCard from "./components/DeveloperCard.vue";
 import RocketCard from "./components/RocketCard.vue";
@@ -26,16 +26,16 @@ import team4 from "@/assets/img/team-4.jpg";
 const store = useAppStore();
 
 onBeforeMount(() => {
-  store.state.isRTL = true;
-  document.querySelector("html").setAttribute("lang", "ar");
-  document.querySelector("html").setAttribute("dir", "rtl");
-  document.querySelector("#app").classList.add("rtl");
+  store.isRTL = true;
+  document.querySelector("html")?.setAttribute("lang", "ar");
+  document.querySelector("html")?.setAttribute("dir", "rtl");
+  document.querySelector("#app")?.classList.add("rtl");
 });
 onBeforeUnmount(() => {
-  store.state.isRTL = false;
-  document.querySelector("html").removeAttribute("lang");
-  document.querySelector("html").removeAttribute("dir");
-  document.querySelector("#app").classList.remove("rtl");
+  store.isRTL = false;
+  document.querySelector("html")?.removeAttribute("lang");
+  document.querySelector("html")?.removeAttribute("dir");
+  document.querySelector("#app")?.classList.remove("rtl");
 });
 </script>
 <template>

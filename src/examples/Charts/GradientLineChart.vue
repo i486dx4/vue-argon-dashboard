@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import Chart from "chart.js/auto";
+import { onMounted } from 'vue'
+import Chart from 'chart.js/auto'
 
 const props = defineProps({
   id: {
@@ -9,15 +9,15 @@ const props = defineProps({
   },
   height: {
     type: String,
-    default: "300",
+    default: '300',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   description: {
     type: String,
-    default: "",
+    default: '',
   },
   chart: {
     type: Object,
@@ -29,202 +29,202 @@ const props = defineProps({
       data: Array,
     },
   },
-});
+})
 
 onMounted(() => {
-  const gradientLineChartEl = document.getElementById(props.id); // .getContext("2d");
+  const gradientLineChartEl = document.getElementById(props.id) as HTMLCanvasElement | null // .getContext("2d");
 
-  if (gradientLineChartEl == null) {
-    return;
-  }
+  if (gradientLineChartEl !== null) {
+    const gradientLineChart = gradientLineChartEl.getContext('2d')
 
-  const gradientLineChart = gradientLineChartEl.getContext("2d");
+    if (gradientLineChart === null) return;
 
-  const gradientStroke1 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
+    const gradientStroke1 = gradientLineChart?.createLinearGradient(0, 230, 0, 50)
 
-  gradientStroke1.addColorStop(1, "rgba(203,12,159,0.2)");
-  gradientStroke1.addColorStop(0.2, "rgba(72,72,176,0.0)");
-  gradientStroke1.addColorStop(0, "rgba(203,12,159,0)"); //purple colors
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)')
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)')
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)') //purple colors
 
-  const gradientStroke2 = gradientLineChart.createLinearGradient(0, 230, 0, 50);
+    const gradientStroke2 = gradientLineChart.createLinearGradient(0, 230, 0, 50)
 
-  gradientStroke2.addColorStop(1, "rgba(20,23,39,0.2)");
-  gradientStroke2.addColorStop(0.2, "rgba(72,72,176,0.0)");
-  gradientStroke2.addColorStop(0, "rgba(20,23,39,0)"); //purple colors
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)')
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)')
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)') //purple colors
 
-  const chartStatus = Chart.getChart(props.id);
-  if (chartStatus != undefined) {
-    chartStatus.destroy();
-  }
-  if (props.chart.datasets.length == 2) {
-    new Chart(gradientLineChart, {
-      type: "line",
-      data: {
-        labels: props.chart.labels,
-        datasets: [
-          {
-            label: props.chart.datasets[0].label,
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#4BB543 ",
-            backgroundColor: gradientStroke1,
+    const chartStatus = Chart.getChart(props.id)
+    if (chartStatus != undefined) {
+      chartStatus.destroy()
+    }
+    if (props.chart.datasets.length == 2) {
+      new Chart(gradientLineChartEl, {
+        type: 'line',
+        data: {
+          labels: props.chart.labels,
+          datasets: [
+            {
+              label: props.chart.datasets[0].label,
+              tension: 0.4,
+              // borderWidth: 0,
+              pointRadius: 0,
+              borderColor: '#4BB543 ',
+              backgroundColor: gradientStroke1,
 
-            borderWidth: 3,
-            fill: true,
-            data: props.chart.datasets[0].data,
-            maxBarThickness: 6,
-          },
-          {
-            label: props.chart.datasets[1].label,
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#3A416F",
-
-            borderWidth: 3,
-            backgroundColor: gradientStroke2,
-            fill: true,
-            data: props.chart.datasets[1].data,
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
+              borderWidth: 3,
+              fill: true,
+              data: props.chart.datasets[0].data,
+              // maxBarThickness: 6,
             },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: "#fbfbfb",
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
-              },
+            {
+              label: props.chart.datasets[1].label,
+              tension: 0.4,
+              // borderWidth: 0,
+              pointRadius: 0,
+              borderColor: '#3A416F',
+
+              borderWidth: 3,
+              backgroundColor: gradientStroke2,
+              fill: true,
+              data: props.chart.datasets[1].data,
+              // maxBarThickness: 6,
             },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
               display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5],
             },
-            ticks: {
-              display: true,
-              color: "#ccc",
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          },
+          scales: {
+            y: {
+              grid: {
+                // drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                // borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                padding: 10,
+                color: '#fbfbfb',
+                font: {
+                  size: 11,
+                  family: 'Open Sans',
+                  style: 'normal',
+                  lineHeight: 2,
+                },
+              },
+            },
+            x: {
+              grid: {
+                // drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                // borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                color: '#ccc',
+                padding: 20,
+                font: {
+                  size: 11,
+                  family: 'Open Sans',
+                  style: 'normal',
+                  lineHeight: 2,
+                },
               },
             },
           },
         },
-      },
-    });
-  } else if (props.chart.datasets.length == 1) {
-    new Chart(gradientLineChart, {
-      type: "line",
-      data: {
-        labels: props.chart.labels,
-        datasets: [
-          {
-            label: props.chart.datasets[0].label,
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#4BB543 ",
-            backgroundColor: gradientStroke1,
+      })
+    } else if (props.chart.datasets.length == 1) {
+      new Chart(gradientLineChart, {
+        type: 'line',
+        data: {
+          labels: props.chart.labels,
+          datasets: [
+            {
+              label: props.chart.datasets[0].label,
+              tension: 0.4,
+              borderWidth: 0,
+              pointRadius: 0,
+              borderColor: '#4BB543 ',
+              backgroundColor: gradientStroke1,
 
-            borderWidth: 3,
-            fill: true,
-            data: props.chart.datasets[0].data,
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
+              // borderWidth: 3,
+              fill: true,
+              data: props.chart.datasets[0].data,
+              // maxBarThickness: 6,
             },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: "#fbfbfb",
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
               display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5],
             },
-            ticks: {
-              display: true,
-              color: "#ccc",
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          },
+          scales: {
+            y: {
+              grid: {
+                // drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                // borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                padding: 10,
+                color: '#fbfbfb',
+                font: {
+                  size: 11,
+                  family: 'Open Sans',
+                  style: 'normal',
+                  lineHeight: 2,
+                },
+              },
+            },
+            x: {
+              grid: {
+                // drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                // borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                color: '#ccc',
+                padding: 20,
+                font: {
+                  size: 11,
+                  family: 'Open Sans',
+                  style: 'normal',
+                  lineHeight: 2,
+                },
               },
             },
           },
         },
-      },
-    });
+      })
+    }
   }
-});
+})
 </script>
 <template>
   <div class="card z-index-2">

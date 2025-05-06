@@ -1,17 +1,52 @@
-<script setup>
-defineProps({
+<!--<script setup lang="ts">-->
+<!--defineProps({-->
+<!--  icon: {-->
+<!--    type: [String, Object],-->
+<!--    required: true,-->
+<!--    component: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    background: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    default: () => ({-->
+<!--      background: "bg-gradient-success",-->
+<!--    }),-->
+<!--  },-->
+<!--  title: {-->
+<!--    type: String,-->
+<!--    required: true,-->
+<!--  },-->
+<!--  description: {-->
+<!--    type: String,-->
+<!--    default: "",-->
+<!--  },-->
+<!--  value: {-->
+<!--    type: [String, Number],-->
+<!--    default: "",-->
+<!--  },-->
+<!--});-->
+<!--</script>-->
+<script setup lang="ts">
+import { defineProps, type PropType } from 'vue';
+
+interface IconObject {
+  component?: string;
+  background?: string;
+}
+
+interface Props {
+  icon: string | IconObject;
+  title: string;
+  description?: string;
+  value?: string | number;
+}
+
+const props: Props = defineProps({
   icon: {
-    type: [String, Object],
+    type: [String, Object] as PropType<string | IconObject>,
     required: true,
-    component: {
-      type: String,
-    },
-    background: {
-      type: String,
-    },
-    default: () => ({
-      background: "bg-gradient-success",
-    }),
+    default: () => ({ background: "bg-gradient-success" }),
   },
   title: {
     type: String,
@@ -22,7 +57,7 @@ defineProps({
     default: "",
   },
   value: {
-    type: [String, Number],
+    type: [String, Number] as PropType<string | number>,
     default: "",
   },
 });
@@ -31,7 +66,7 @@ defineProps({
   <div class="card">
     <div class="p-3 mx-4 text-center card-header d-flex justify-content-center">
       <div
-        :class="`icon icon-shape icon-lg shadow text-center border-radius-lg ${icon.background}`"
+        :class="`icon icon-shape icon-lg shadow text-center border-radius-lg ${(props.icon as IconObject).background}`"
       >
         <i
           class="opacity-10"

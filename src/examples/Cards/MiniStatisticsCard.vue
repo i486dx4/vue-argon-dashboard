@@ -1,80 +1,147 @@
-<script setup>
-defineProps({
+<!--<script setup lang="ts">-->
+<!--import { defineProps } from 'vue'-->
+
+<!--defineProps({-->
+<!--  rowReverse: {-->
+<!--    type: Boolean,-->
+<!--    default: false,-->
+<!--  },-->
+<!--  title: {-->
+<!--    type: [Object, String],-->
+<!--    required: true,-->
+<!--    text: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    color: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--  },-->
+<!--  description: {-->
+<!--    type: String,-->
+<!--    default: '',-->
+<!--  },-->
+<!--  value: {-->
+<!--    type: [Object, String, Number],-->
+<!--    required: true,-->
+<!--    text: {-->
+<!--      type: [String, Number],-->
+<!--    },-->
+<!--    color: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--  },-->
+<!--  percentage: {-->
+<!--    type: [Object, String],-->
+<!--    value: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    color: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    default: () => ({-->
+<!--      color: 'success',-->
+<!--    }),-->
+<!--  },-->
+<!--  icon: {-->
+<!--    type: [String, Object],-->
+<!--    component: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    background: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    shape: {-->
+<!--      type: String,-->
+<!--    },-->
+<!--    default: () => ({-->
+<!--      background: 'bg-white',-->
+<!--      shape: ' border-radius-md',-->
+<!--    }),-->
+<!--  },-->
+<!--  classContent: {-->
+<!--    type: String,-->
+<!--    default: '',-->
+<!--  },-->
+<!--})-->
+<!--</script>-->
+<script setup lang="ts">
+import { type PropType } from 'vue'
+
+interface TitleObject {
+  text?: string
+  color?: string
+}
+
+interface ValueObject {
+  text?: string | number
+  color?: string
+}
+
+interface PercentageObject {
+  value?: string
+  color?: string
+}
+
+interface IconObject {
+  component?: string
+  background?: string
+  shape?: string
+}
+
+interface Props {
+  rowReverse?: boolean
+  title: string | TitleObject
+  description?: string
+  value: string | number | ValueObject
+  percentage?: string | PercentageObject
+  icon?: string | IconObject
+  classContent?: string
+}
+
+const props: Props =defineProps({
   rowReverse: {
     type: Boolean,
     default: false,
   },
   title: {
-    type: [Object, String],
+    type: [Object, String] as PropType<string | TitleObject>,
     required: true,
-    text: {
-      type: String,
-    },
-    color: {
-      type: String,
-    },
   },
   description: {
     type: String,
-    default: "",
+    default: '',
   },
   value: {
-    type: [Object, String, Number],
+    type: [Object, String, Number] as PropType<string | number | ValueObject>,
     required: true,
-    text: {
-      type: [String, Number],
-    },
-    color: {
-      type: String,
-    },
   },
   percentage: {
-    type: [Object, String],
-    value: {
-      type: String,
-    },
-    color: {
-      type: String,
-    },
+    type: [Object, String] as PropType<string | PercentageObject>,
     default: () => ({
-      color: "success",
+      color: 'success',
     }),
   },
   icon: {
-    type: [String, Object],
-    component: {
-      type: String,
-    },
-    background: {
-      type: String,
-    },
-    shape: {
-      type: String,
-    },
+    type: [String, Object] as PropType<string | IconObject>,
     default: () => ({
-      background: "bg-white",
-      shape: " border-radius-md",
+      background: 'bg-white',
+      shape: ' border-radius-md',
     }),
   },
   classContent: {
     type: String,
-    default: "",
+    default: '',
   },
-});
+})
 </script>
 <template>
   <div class="mb-3 card">
     <div class="p-3 card-body">
-      <div
-        class="d-flex"
-        :class="rowReverse ? '' : 'flex-row-reverse justify-content-between'"
-      >
+      <div class="d-flex" :class="rowReverse ? '' : 'flex-row-reverse justify-content-between'">
         <div
           class="text-center shadow icon icon-shape"
           :class="[
-            typeof icon === 'object'
-              ? `${icon.background} ${icon.shape}`
-              : 'border-radius-md',
+            typeof icon === 'object' ? `${icon.background} ${icon.shape}` : 'border-radius-md',
             rowReverse ? 'me-2' : '',
           ]"
         >
@@ -86,18 +153,14 @@ defineProps({
         </div>
         <div :class="classContent">
           <div class="numbers">
-            <p
-              class="mb-0 text-sm text-uppercase font-weight-bold"
-              :class="title.color"
-            >
-              {{ typeof title === "string" ? title : title.text }}
+            <p class="mb-0 text-sm text-uppercase font-weight-bold" :class="(props.title as TitleObject)?.color">
+              {{ typeof title === 'string' ? title : title.text }}
             </p>
-            <h5 :class="`mb-0 font-weight-bolder ${value.color}`">
+            <h5 :class="`mb-0 font-weight-bolder ${(props.value as ValueObject)?.color}`">
               {{
-                (value && typeof value === "string") ||
-                (value && typeof value === "number")
-                  ? value
-                  : value.text
+                (props.value && typeof props.value === 'string') || (props.value && typeof props.value === 'number')
+                  ? props.value
+                  : (props.value as ValueObject)?.text
               }}
               <span
                 v-if="percentage && typeof percentage === 'string'"

@@ -19,9 +19,9 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
-import ArgonDashboard from "./argon-dashboard.js";
+import ArgonDashboard from "./argon-dashboard.ts";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 import App from './App.vue'
 import router from './router'

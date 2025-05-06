@@ -1,11 +1,11 @@
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, defineProps } from "vue";
 // import { defineStore } from "pinia";
-import { useAppStore } from "@/store/index.js";
+import { useAppStore } from "@/store/index.ts";
 
 const store = useAppStore();
-const isRTL = computed(() => store.state.isRTL);
-const layout = computed(() => store.state.layout);
+const isRTL = computed(() => store.isRTL);
+const layout = computed(() => store.layout);
 defineProps({
   card: {
     type: Object,

@@ -1,75 +1,78 @@
-<script setup>
-import { onMounted } from "vue";
-import Chart from "chart.js/auto";
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import Chart from 'chart.js/auto'
 
 onMounted(() => {
-  let ctx = document.getElementById("chart-bars").getContext("2d");
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [
-        {
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          maxBarThickness: 6,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-      interaction: {
-        intersect: false,
-        mode: "index",
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
+  const ctx = document.getElementById('chart-bars') as HTMLCanvasElement | null // .getContext("2d");
+
+  if (ctx !== null) {
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [
+          {
+            label: 'Sales',
+            // tension: 0.4,
+            borderWidth: 0,
+            borderRadius: 4,
+            borderSkipped: false,
+            backgroundColor: '#fff',
+            data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+            maxBarThickness: 6,
           },
-          ticks: {
-            suggestedMin: 0,
-            suggestedMax: 500,
-            beginAtZero: true,
-            padding: 15,
-            font: {
-              size: 14,
-              family: "Open Sans",
-              style: "normal",
-              lineHeight: 2,
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              // drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
             },
-            color: "#fff",
+            ticks: {
+              // suggestedMin: 0,
+              // suggestedMax: 500,
+              // beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: 'Open Sans',
+                style: 'normal',
+                lineHeight: 2,
+              },
+              color: '#fff',
+            },
           },
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-          },
-          ticks: {
-            display: false,
+          x: {
+            grid: {
+              // drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              display: false,
+            },
           },
         },
       },
-    },
-  });
-});
+    })
+  }
+})
 </script>
 <template>
   <div class="card">
@@ -100,12 +103,7 @@ onMounted(() => {
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>document</title>
-                  <g
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
-                  >
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g
                       transform="translate(-1870.000000, -591.000000)"
                       fill="#FFFFFF"
@@ -155,12 +153,7 @@ onMounted(() => {
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>spaceship</title>
-                  <g
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
-                  >
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g
                       transform="translate(-1720.000000, -592.000000)"
                       fill="#FFFFFF"
@@ -219,12 +212,7 @@ onMounted(() => {
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>credit-card</title>
-                  <g
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
-                  >
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g
                       transform="translate(-2169.000000, -745.000000)"
                       fill="#FFFFFF"
@@ -274,12 +262,7 @@ onMounted(() => {
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>settings</title>
-                  <g
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
-                  >
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g
                       transform="translate(-2020.000000, -442.000000)"
                       fill="#FFFFFF"
