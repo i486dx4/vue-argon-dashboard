@@ -50,7 +50,7 @@
 
 
 <script setup lang="ts">
-import { defineProps, type PropType } from 'vue';
+import { type PropType } from 'vue';
 
 interface Props {
   color?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'dark';

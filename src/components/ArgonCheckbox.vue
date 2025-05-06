@@ -1,5 +1,4 @@
 <!--<script setup lang="ts">-->
-<!--import { defineProps } from 'vue';-->
 
 <!--interface Props {-->
 <!--  name?: string;-->
@@ -23,7 +22,6 @@
 <!--});-->
 <!--</script>-->
 <script setup lang="ts">
-import { defineProps } from 'vue';
 
 defineProps({
   name: {

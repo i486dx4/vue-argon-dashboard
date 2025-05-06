@@ -54,7 +54,7 @@
 
 
 <script setup lang="ts">
-import { defineProps, type PropType } from 'vue';
+import { type PropType } from 'vue';
 
 interface Props {
   image: string;

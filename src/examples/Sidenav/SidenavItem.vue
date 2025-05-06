@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
 // import { defineStore } from "pinia";
 import { useAppStore } from "@/store/index.ts";
 

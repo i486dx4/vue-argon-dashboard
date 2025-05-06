@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { useAppStore, type SidebarBackgroundColor } from "@/store/index.ts";
 import { activateDarkMode, deactivateDarkMode } from "@/assets/js/dark-mode";
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const store = useAppStore();
 // state

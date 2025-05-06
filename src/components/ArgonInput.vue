@@ -1,5 +1,4 @@
 <!--<script setup lang="ts">-->
-<!--import { defineProps } from "vue";-->
 <!--const emit = defineEmits(["update:modelValue"]);-->
 
 <!--defineProps({-->
@@ -68,7 +67,7 @@
 <!--const hasIcon = (icon) => (icon ? "input-group" : null);-->
 <!--</script>-->
 <script setup lang="ts">
-import { defineEmits, defineProps, type PropType } from 'vue'
+import { type PropType } from 'vue'
 
 const emit = defineEmits(['update:modelValue'])
 
